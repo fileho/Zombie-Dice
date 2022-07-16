@@ -6,6 +6,7 @@ using UnityEngine;
 public class RocketLauncher : Attachment
 {
     [SerializeField] private float explosionRange;
+    [SerializeField] private float massModifier;
 
     public override void Apply(GunStats gun)
     {
@@ -22,5 +23,6 @@ public class RocketLauncher : Attachment
         int value = equip ? 1 : -1;
 
         gun.explosionRange += explosionRange * value;
+        gun.massModifier += massModifier * value;
     }
 }

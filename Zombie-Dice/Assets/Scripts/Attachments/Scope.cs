@@ -7,6 +7,7 @@ public class Scope : Attachment
 {
     [SerializeField] private float speed;
     [SerializeField] private float damage;
+    [SerializeField] private float massModifier;
 
     public override void Apply(GunStats gun)
     {
@@ -24,5 +25,6 @@ public class Scope : Attachment
 
         gun.damage += damage * value;
         gun.bulletSpeed += speed * value;
+        gun.massModifier += massModifier * value;
     }
 }

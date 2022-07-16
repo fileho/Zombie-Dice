@@ -12,6 +12,7 @@ public class GunStats : ScriptableObject
     public int currentAmmo;
     public int bulletCount;
     public float rateOfFire;
+    public float massModifier;
 
     public bool CanShoot()
     {

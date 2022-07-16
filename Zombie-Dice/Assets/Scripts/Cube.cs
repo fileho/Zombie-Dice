@@ -5,10 +5,11 @@ using UnityEngine;
 public class Cube : MonoBehaviour
 {
     [SerializeField] private List<Attachment> attachments;
+    [SerializeField] private List<Consumables> consumables;
 
     private Transform cube;    
     private Quaternion rotation = Quaternion.Euler(0, 0, 0);
-    private int rindex;
+    private int rindex = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -17,22 +18,26 @@ public class Cube : MonoBehaviour
 
         for (int i = 0; i < attachments.Count; i++)
         {
-            cube.GetChild(i).GetComponent<SpriteRenderer>().sprite = attachments[i].icon;
+            var sr = cube.GetChild(i).GetComponent<SpriteRenderer>();
+            sr.sprite = attachments[i].crateIcon;
+            sr.color = Color.white;
         }
+
+        for (int i = 0; i < consumables.Count; i++)
+        {
+            var sr = cube.GetChild(attachments.Count + i).GetComponent<SpriteRenderer>();
+            sr.sprite = consumables[i].crateIcon;
+            sr.color = Color.white;
+        }
+
+        PickRotation();
+        cube.rotation = rotation;
 
     }
 
     private void PickRotation()
     {
-        // float x = Random.Range(0, 4);
-        // float y = Random.Range(0, 4);
-        // 
-        // if (x == rot.x)
-        //     x = (x + 1) % 4;
-        // if (y == rot.y)
-        //     y = (y + 1) % 4;
-
-        List<(int, int)> rotations = new List<(int, int)> { (0, 0), (90, 90), (0, 180), (180, 270), (90, 0), (90, 180) };
+        List<(int, int)> rotations = new List<(int, int)> { (0, 180), (180, 270), (0, 0), (90, 90), (90, 180), (90, 0) };
 
         int i = Random.Range(0, 6);
         if (i == rindex)
@@ -54,10 +59,28 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PickUp();
+            Destroy(gameObject);
+            return;
+        }
+
         var bullet = collision.gameObject.GetComponent<Bullet>();
         if (bullet == null)
             return;
 
         PickRotation();
+    }
+
+    private void PickUp()
+    {
+        if (rindex <= attachments.Count)
+        {
+            Gun.instance.AddAttachment(attachments[rindex]);
+            return;
+        }
+
+        consumables[rindex - attachments.Count].Use();
     }
 }

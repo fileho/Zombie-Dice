@@ -5,14 +5,28 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] private float maxHP;
+    [SerializeField] private float maxArmor;
     [SerializeField] private float movementSpeed;
 
+    private float hp;
+    private float armor;
     private Rigidbody2D rb;
     private Camera mainCamera;
+
+    public static Character instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        hp = maxHP;
+        armor = maxArmor;
+
         rb = GetComponent<Rigidbody2D>();
         mainCamera = Camera.main;        
     }
@@ -52,5 +66,50 @@ public class Character : MonoBehaviour
         dir.Normalize();
 
         transform.up = dir;
+    }
+
+    public void TakeDamage(float value)
+    {
+        value = ConsumeArmor(value);
+
+        if (value == 0)
+            return;
+
+        hp -= value;
+        if (hp <= 0)
+            Die();
+    }
+
+    public void RestoreHP(float value)
+    {
+        hp += value;
+        hp = Mathf.Min(hp, maxHP);
+    }
+
+    public void AddArmor(float value)
+    {
+        armor += value;
+        armor = Mathf.Min(armor, maxHP);
+    }
+
+
+    // returns leftovers damage
+    private float ConsumeArmor(float value)
+    {
+        if (armor == 0)
+            return value;
+
+        armor -= value;
+        if (armor >= 0)
+            return 0;
+
+        float leftover = -armor;
+        armor = 0;
+        return leftover;
+    }
+
+    private void Die()
+    {
+        throw new NotImplementedException();
     }
 }

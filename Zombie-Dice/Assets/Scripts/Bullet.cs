@@ -10,10 +10,17 @@ public class Bullet : MonoBehaviour
     private float damage = 0;
     private float explosionRange = 0;
 
-    public void Setup(float damage, float explosionRange)
+    public void Setup(float damage, float explosionRange, float mass)
     {
         this.damage = damage;
         this.explosionRange = explosionRange;
+
+        GetComponent<Rigidbody2D>().mass *= mass;
+
+        float scale = 1 + explosionRange * 0.2f;
+        transform.localScale *= scale;
+
+        Invoke(nameof(End), 8f);
     }
 
 
@@ -39,6 +46,11 @@ public class Bullet : MonoBehaviour
     private void Explode()
     {
         var o = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, -6), Quaternion.identity);
-        o.Setup(damage);
+        o.Setup(damage, explosionRange);
+    }
+
+    private void End()
+    {
+        Destroy(gameObject);
     }
 }

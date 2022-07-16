@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72e8a39b16b24e4fb069a586cae7f5b, type: 3}
   m_Name: Scope
   m_EditorClassIdentifier: 
-  speed: 1
+  crateIcon: {fileID: 21300000, guid: 1df657510904b5c4aa6248a07d3527d1, type: 3}
+  icon: {fileID: 21300000, guid: df42c139ccea1bc4dabba86788774dad, type: 3}
+  speed: 2.5
   damage: 2
+  massModifier: 0.2

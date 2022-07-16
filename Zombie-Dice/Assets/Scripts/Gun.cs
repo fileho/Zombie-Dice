@@ -80,7 +80,7 @@ public class Gun : MonoBehaviour
 
             var force = 10 * gunStats.bulletSpeed * direction;
             o.AddForce(force);
-            o.GetComponent<Bullet>().Setup(gunStats.damage, gunStats.explosionRange);
+            o.GetComponent<Bullet>().Setup(gunStats.damage, gunStats.explosionRange, gunStats.massModifier);
 
             // Conservation of energy
             rb.AddForce(-force);
@@ -105,11 +105,20 @@ public class Gun : MonoBehaviour
             RemoveAttachment();
         attachments.Add(attachment);
         attachments[attachments.Count - 1].Apply(gunStats);
+        UpdateAttachmentIcons();
     }
 
     private void RemoveAttachment()
     {
         attachments[0].Remove(gunStats);
         attachments.RemoveAt(0);
+    }
+
+    private void UpdateAttachmentIcons()
+    {
+        for (int i = 0; i < attachments.Count; i++)
+        {
+            UIManager.instance.SetIcon(attachments[i].icon, i);
+        }
     }
 }

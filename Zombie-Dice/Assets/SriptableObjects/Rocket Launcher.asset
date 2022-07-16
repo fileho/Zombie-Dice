@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ade2f7871d615147bd2c84b8494cff5, type: 3}
   m_Name: Rocket Launcher
   m_EditorClassIdentifier: 
+  crateIcon: {fileID: 21300000, guid: 4cacd9ae6644e744e8a99facfc892c79, type: 3}
+  icon: {fileID: 21300000, guid: e69970f6c2f65c14a80574b85080e583, type: 3}
   explosionRange: 1
+  massModifier: 0.2
