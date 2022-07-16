@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb1d96ba82c8a4459b66dbbbdce30d6, type: 3}
   m_Name: GunStats
   m_EditorClassIdentifier: 
-  bulletSpeed: 4
+  bulletSpeed: 5
   damage: 5
   explosionRange: 0
   maxAmmo: 6
