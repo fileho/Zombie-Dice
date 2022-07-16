@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     private float armor;
     private Rigidbody2D rb;
     private Camera mainCamera;
+    private Animator animator;
 
     public static Character instance;
 
@@ -28,6 +29,7 @@ public class Character : MonoBehaviour
         armor = maxArmor;
 
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         mainCamera = Camera.main;        
     }
 
@@ -51,6 +53,8 @@ public class Character : MonoBehaviour
 
         dir.Normalize();
         ExecuteMovement(dir);
+
+        animator.SetFloat("speed", rb.velocity.magnitude);
     }
 
     private void ExecuteMovement(Vector2 dir)
