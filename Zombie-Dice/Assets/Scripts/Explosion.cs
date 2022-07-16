@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    [SerializeField] private AudioClip explosionClip;
+
     private ParticleSystem ps;
 
     private float damage;
@@ -18,6 +20,7 @@ public class Explosion : MonoBehaviour
 
         ps = GetComponent<ParticleSystem>();
         ps.Play();
+        SoundManager.instance.Play(explosionClip);
 
         Invoke(nameof(End), 0.6f);
     }

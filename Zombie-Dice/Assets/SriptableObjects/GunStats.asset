@@ -20,3 +20,11 @@ MonoBehaviour:
   bulletCount: 1
   rateOfFire: 1
   massModifier: 1
+  reloadRifleClip: {fileID: 8300000, guid: ef1d882a7feffa349a1d7250d258dede, type: 3}
+  reloadShotgunClip: {fileID: 8300000, guid: 0064bee459905b947ac6153eb6973cb6, type: 3}
+  shotgun: {fileID: 8300000, guid: 04165b21a5a264c46b75a895c658b60d, type: 3}
+  sniper: {fileID: 8300000, guid: 09305da02f122ab4d87a809f3aa5ae14, type: 3}
+  pistol: {fileID: 8300000, guid: 54f8cac76388aa346ba1cd511fb24cf6, type: 3}
+  rocketLauncher: {fileID: 8300000, guid: feaa12d96b708df4990a44667d85682d, type: 3}
+  shotgunCombined: {fileID: 8300000, guid: 27930f88d81708d478b4551180444ccf, type: 3}
+  sniperLauncher: {fileID: 8300000, guid: 3335c3a3431e2f84eae171f50bd6bf66, type: 3}

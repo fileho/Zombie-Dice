@@ -30,10 +30,11 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void Play(AudioClip clip)
+    public void Play(AudioClip clip, float volume = 1)
     {
         var source = audioSources[index];
         source.clip = clip;
+        source.volume = volume;
         source.Play();
 
         IncrementIndex();

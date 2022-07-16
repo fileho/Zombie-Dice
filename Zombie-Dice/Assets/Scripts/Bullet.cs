@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Explosion explosion;
 
+    [Space]
+    [SerializeField] private AudioClip impactClip;
+
     private float damage = 0;
     private float explosionRange = 0;
 
@@ -30,6 +33,8 @@ public class Bullet : MonoBehaviour
             Explode();
 
         DealDamage(collision);
+        if (explosionRange == 0)
+            SoundManager.instance.Play(impactClip);
 
         Destroy(gameObject);
     }
