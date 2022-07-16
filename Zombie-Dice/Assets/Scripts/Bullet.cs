@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private GameObject explosion;
+    [SerializeField] private Explosion explosion;
 
     private float damage = 0;
     private float explosionRange = 0;
@@ -16,20 +17,28 @@ public class Bullet : MonoBehaviour
     }
 
 
-
-
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (explosionRange > 0)
             Explode();
 
+        DealDamage(collision);
+
         Destroy(gameObject);
+    }
+
+    private void DealDamage(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Enemy"))
+            return;
+
+        var e = collision.gameObject.GetComponent<Enemy>();
+        e.TakeDamage(damage);
     }
 
     private void Explode()
     {
-        Instantiate(explosion, transform.position, Quaternion.identity);
+        var o = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, -6), Quaternion.identity);
+        o.Setup(damage);
     }
 }

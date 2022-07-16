@@ -68,9 +68,9 @@ public class Gun : MonoBehaviour
     {
         for (int i = 0; i < gunStats.bulletCount; i++)
         {
+            // shotgun
             float j = (i + 1) / 2;
             float dir = i % 2 == 0 ? 1 : -1;
-            
             float angle = j * dir * 8 * Mathf.Deg2Rad;
 
             Vector2 direction = RotateVector(transform.up, angle);
@@ -82,9 +82,9 @@ public class Gun : MonoBehaviour
             o.AddForce(force);
             o.GetComponent<Bullet>().Setup(gunStats.damage, gunStats.explosionRange);
 
+            // Conservation of energy
             rb.AddForce(-force);
         }
-
 
         gunStats.Shoot();
         shootDelay = 0.5f;
@@ -111,6 +111,5 @@ public class Gun : MonoBehaviour
     {
         attachments[0].Remove(gunStats);
         attachments.RemoveAt(0);
-
     }
 }
