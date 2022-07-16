@@ -6,6 +6,8 @@ public class Attachment : ScriptableObject
 {
     public Sprite crateIcon;
     public Sprite icon;
+    public AudioClip pickUpSound;
+
     public virtual void Apply(GunStats gun) {;}
     public virtual void Remove(GunStats gun) {;}
 }

@@ -9,6 +9,11 @@ public class Character : MonoBehaviour
     [SerializeField] private float maxArmor;
     [SerializeField] private float movementSpeed;
 
+    [Space]
+    [SerializeField] private AudioClip takeDamageClip;
+    [SerializeField] private AudioClip deathClip;
+
+
     private float hp;
     private float armor;
     private Rigidbody2D rb;
@@ -37,6 +42,12 @@ public class Character : MonoBehaviour
     {
         Movement();
         Rotate();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+            TakeDamage(20);
     }
 
     private void Movement()
@@ -79,6 +90,8 @@ public class Character : MonoBehaviour
         if (value == 0)
             return;
 
+        SoundManager.instance.Play(takeDamageClip);
+
         hp -= value;
         if (hp <= 0)
             Die();
@@ -114,6 +127,10 @@ public class Character : MonoBehaviour
 
     private void Die()
     {
-        throw new NotImplementedException();
+        SoundManager.instance.Play(deathClip);
+    }
+
+    public void PlayFootsteps(AudioClip clip) {
+        SoundManager.instance.Play(clip); 
     }
 }

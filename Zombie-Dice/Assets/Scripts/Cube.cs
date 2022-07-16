@@ -75,12 +75,14 @@ public class Cube : MonoBehaviour
 
     private void PickUp()
     {
-        if (rindex <= attachments.Count)
+        if (rindex < attachments.Count)
         {
             Gun.instance.AddAttachment(attachments[rindex]);
+            SoundManager.instance.Play(attachments[rindex].pickUpSound);
             return;
         }
-
-        consumables[rindex - attachments.Count].Use();
+        int index = rindex - attachments.Count;
+        consumables[index].Use();
+        SoundManager.instance.Play(consumables[index].pickUpSound);
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crateIcon: {fileID: 21300000, guid: 1df657510904b5c4aa6248a07d3527d1, type: 3}
   icon: {fileID: 21300000, guid: df42c139ccea1bc4dabba86788774dad, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 036de6b5925356a4ebb74e3d0d781328, type: 3}
   speed: 2.5
   damage: 2
   massModifier: 0.2

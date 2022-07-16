@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Armor
   m_EditorClassIdentifier: 
   crateIcon: {fileID: 21300000, guid: 482f41585dda6924abc5e92b21440c38, type: 3}
+  pickUpSound: {fileID: 8300000, guid: a3ed99836c3a8444f80244c8a24fd3ca, type: 3}
   armor: 20

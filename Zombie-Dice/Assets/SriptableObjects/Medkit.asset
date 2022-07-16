@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Medkit
   m_EditorClassIdentifier: 
   crateIcon: {fileID: 21300000, guid: d5be38320f5063b42921a3079f2a2d73, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 598ae47899ced524e899e62deb805ddc, type: 3}
   hp: 20
