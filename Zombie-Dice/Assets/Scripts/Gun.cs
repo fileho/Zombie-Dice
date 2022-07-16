@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     private List<Attachment> attachments = new List<Attachment>();
 
     private float shootDelay = 0f;
+    private Rigidbody2D rb;
 
     private Transform barrel;
 
@@ -27,6 +28,8 @@ public class Gun : MonoBehaviour
     void Start()
     {
         barrel = transform.Find("Barrel");
+
+        rb = GetComponentInParent<Rigidbody2D>();
 
         // Create a new instance
         gunStats = Instantiate(gunStats);
@@ -45,7 +48,9 @@ public class Gun : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
             AddAttachment(atts[1]);
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            AddAttachment(atts[2]);
+            AddAttachment(atts[2]);        
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            AddAttachment(atts[3]);
     }
 
     private bool CanShoot()
@@ -73,7 +78,11 @@ public class Gun : MonoBehaviour
             var o = Instantiate(bullet, barrel.position, Quaternion.identity);
             o.transform.up = direction;
 
-            o.AddForce(100 * gunStats.bulletSpeed * direction);
+            var force = 10 * gunStats.bulletSpeed * direction;
+            o.AddForce(force);
+            o.GetComponent<Bullet>().Setup(gunStats.damage, gunStats.explosionRange);
+
+            rb.AddForce(-force);
         }
 
 

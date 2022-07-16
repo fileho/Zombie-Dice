@@ -28,5 +28,7 @@ public class Magazine : Attachment
 
         gun.maxAmmo += extraBullets * value;
         gun.rateOfFire += rateOfFire * value;
+
+        gun.DrawAmmo();
     }
 }

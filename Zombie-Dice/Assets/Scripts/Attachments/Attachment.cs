@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attachment : ScriptableObject
 {
+    public Sprite icon;
     public virtual void Apply(GunStats gun) {;}
     public virtual void Remove(GunStats gun) {;}
 }

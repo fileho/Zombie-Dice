@@ -18,7 +18,7 @@ public class Shotgun : Attachment
     }
 
 
-    private void Modify(GunStats gun, bool equip)
+    public void Modify(GunStats gun, bool equip)
     {
         int value = equip ? 1 : -1;
 

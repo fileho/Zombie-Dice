@@ -25,6 +25,7 @@ public class GunStats : ScriptableObject
         {
             Gun.instance.StartCoroutine(Reload());
         }
+        DrawAmmo();
     }
 
     private IEnumerator Reload()
@@ -32,6 +33,12 @@ public class GunStats : ScriptableObject
         const float reloadDuration = 2f;
         yield return new WaitForSeconds(reloadDuration);
         currentAmmo = maxAmmo;
+        DrawAmmo();
+    }
+
+    public void DrawAmmo()
+    {
+        UIManager.instance.UpdateAmmo(currentAmmo, maxAmmo);
     }
 
 }
