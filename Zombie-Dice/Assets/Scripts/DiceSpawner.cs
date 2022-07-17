@@ -7,17 +7,24 @@ public class DiceSpawner : MonoBehaviour
     [SerializeField] private Cube dice;
     [SerializeField] private float radius;
 
+    public static DiceSpawner instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnCube), 5f, 15f);
+        InvokeRepeating(nameof(SpawnCube), 5f, 10f);
     }
 
     // Update is called once per frame
-    void Update()
+    public void SpawnWave(int waveCount)
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            SpawnCubes(4);
+        SpawnCubes(waveCount + 2);
     }
+
 
     private void SpawnCubes(int count)
     {

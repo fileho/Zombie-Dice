@@ -17,5 +17,5 @@ MonoBehaviour:
   pickUpSound: {fileID: 8300000, guid: 036de6b5925356a4ebb74e3d0d781328, type: 3}
   duration: 15
   speed: 2.5
-  damage: 2
+  damage: 3
   massModifier: 0.2

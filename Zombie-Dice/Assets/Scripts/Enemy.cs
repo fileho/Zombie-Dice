@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour
     protected bool attacking = false;
     protected bool canMove = true;
 
+    private bool death = false;
+
     void Start()
     {
         hp = maxHP;
@@ -95,6 +97,11 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        if (death)
+            return;
+        death = true;
+
+        EnemySpawner.instance.EnemyDeath();
         SoundManager.instance.Play(deathClip, 0.35f);
         Destroy(transform.parent.gameObject);
     }
