@@ -131,6 +131,6 @@ public class Character : MonoBehaviour
     }
 
     public void PlayFootsteps(AudioClip clip) {
-        SoundManager.instance.Play(clip, 0.8f); 
+        SoundManager.instance.Play(clip, 0.5f); 
     }
 }
