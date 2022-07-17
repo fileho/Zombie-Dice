@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour
 
     public List<Attachment> atts;
 
-    private List<Attachment> attachments = new List<Attachment>();
+    private readonly List<Attachment> attachments = new List<Attachment>();
 
     private float shootDelay = 0f;
     private Rigidbody2D rb;

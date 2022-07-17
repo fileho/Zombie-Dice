@@ -95,14 +95,14 @@ public class Enemy : MonoBehaviour
         while (time < duration)
         {
             time += Time.deltaTime;
-            float t = Tweens.SmoothStep(Mathf.Clamp01(time / duration));
+            float t = Tweens.SmoothStop(Mathf.Clamp01(time / duration));
             spriteRenderer.color = Color.Lerp(Color.white, Color.red, t);
             yield return null;
         }
         while (time > 0)
         {
             time -= Time.deltaTime;
-            float t = Tweens.SmoothStep(Mathf.Clamp01(time / duration));
+            float t = Tweens.SmoothStop(Mathf.Clamp01(time / duration));
             spriteRenderer.color = Color.Lerp(Color.white, Color.red, t);
             yield return null;
         }
