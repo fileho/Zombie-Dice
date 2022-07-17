@@ -22,6 +22,8 @@ public class Character : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+    private int interactable = 0;
+
     public static Character instance;
 
     private void Awake()
@@ -33,24 +35,33 @@ public class Character : MonoBehaviour
     void Start()
     {
         hp = maxHP;
-        armor = maxArmor;
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        mainCamera = Camera.main;        
+        mainCamera = Camera.main;
+
+        UpdateHPbar();
+        UpdateArmorbar();
     }
 
     private void FixedUpdate()
     {
+        if (interactable > 0)
+            return;
+
         Movement();
         Rotate();
     }
 
-    private void Update()
+    public bool IsInteractable()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-            TakeDamage(20);
+        return interactable == 0;
+    }
+
+    public void SetInteractable(int value)
+    {
+        interactable += value;
     }
 
     private void Movement()
@@ -97,6 +108,10 @@ public class Character : MonoBehaviour
         SoundManager.instance.Play(takeDamageClip);
 
         hp -= value;
+
+        hp = Mathf.Max(hp, 0);
+        UpdateHPbar();
+
         if (hp <= 0)
             Die();
     }
@@ -105,12 +120,25 @@ public class Character : MonoBehaviour
     {
         hp += value;
         hp = Mathf.Min(hp, maxHP);
+        UpdateHPbar();
+    }
+
+    private void UpdateHPbar()
+    {
+        Healthbar.instance.UpdateHealthbar(hp / maxHP);
+    }
+
+    private void UpdateArmorbar()
+    {
+        Healthbar.instance.UpdateArmorbar(Mathf.Max(0, armor) / maxArmor);
     }
 
     public void AddArmor(float value)
     {
         armor += value;
         armor = Mathf.Min(armor, maxHP);
+
+        UpdateArmorbar();
     }
 
 
@@ -121,6 +149,8 @@ public class Character : MonoBehaviour
             return value;
 
         armor -= value;
+        UpdateArmorbar();
+
         if (armor >= 0)
             return 0;
 
@@ -133,7 +163,8 @@ public class Character : MonoBehaviour
     {
         SoundManager.instance.Play(deathClip);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        interactable++;
+        Gameover.instance.Activate();
     }
 
     public void PlayFootsteps(AudioClip clip) {

@@ -21,6 +21,7 @@ public class Soundtrack : MonoBehaviour
             return;
         }
 
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 

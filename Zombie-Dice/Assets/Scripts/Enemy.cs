@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private EnemyHealthbar hpbar;
 
     private Vector2 offset = Vector2.zero;
     private float hp;
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        hpbar = transform.parent.GetComponentInChildren<EnemyHealthbar>();
 
         InvokeRepeating(nameof(GenerateOffset), 0f, .25f);
     }
@@ -80,7 +82,11 @@ public class Enemy : MonoBehaviour
         hp -= value;
 
         if (hp > 0)
+        {
             SoundManager.instance.Play(takeDamageClip, 0.35f);
+            hpbar.Show(hp / maxHP);
+        }
+
         StartCoroutine(FlashRed());
 
         if (hp <= 0)
@@ -90,7 +96,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         SoundManager.instance.Play(deathClip, 0.35f);
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private void GenerateOffset()
