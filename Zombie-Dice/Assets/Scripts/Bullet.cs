@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
             return;
 
         if (explosionRange == 0)
-            SoundManager.instance.Play(impactClip);
+            SoundManager.instance.Play(impactClip, 0.7f);
 
         var e = collision.gameObject.GetComponent<Enemy>();
         e.TakeDamage(damage);

@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
         hp -= value;
 
         if (hp > 0)
-            SoundManager.instance.Play(takeDamageClip, 0.7f);
+            SoundManager.instance.Play(takeDamageClip, 0.35f);
         StartCoroutine(FlashRed());
 
         if (hp <= 0)
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        SoundManager.instance.Play(deathClip);
+        SoundManager.instance.Play(deathClip, 0.35f);
         Destroy(gameObject);
     }
 

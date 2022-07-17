@@ -20,7 +20,7 @@ public class Explosion : MonoBehaviour
 
         ps = GetComponent<ParticleSystem>();
         ps.Play();
-        SoundManager.instance.Play(explosionClip, 0.7f);
+        SoundManager.instance.Play(explosionClip, 0.6f);
 
         Invoke(nameof(End), 0.6f);
     }
