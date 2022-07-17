@@ -33,9 +33,6 @@ public class Bullet : MonoBehaviour
             Explode();
 
         DealDamage(collision);
-        if (explosionRange == 0)
-            SoundManager.instance.Play(impactClip);
-
         Destroy(gameObject);
     }
 
@@ -50,6 +47,9 @@ public class Bullet : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             return;
 
+        if (explosionRange == 0)
+            SoundManager.instance.Play(impactClip);
+
         Character.instance.TakeDamage(damage);
     }
 
@@ -57,6 +57,9 @@ public class Bullet : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Enemy"))
             return;
+
+        if (explosionRange == 0)
+            SoundManager.instance.Play(impactClip);
 
         var e = collision.gameObject.GetComponent<Enemy>();
         e.TakeDamage(damage);

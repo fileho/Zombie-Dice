@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private float undirectMovementStrength = 1f;
 
+    [Space]
+    [SerializeField] private AudioClip takeDamageClip;
+    [SerializeField] private AudioClip deathClip;
+    [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioClip attackImpactClip;
+
     protected Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -55,15 +61,17 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        if (attacking || !PlayerIsClose())
+        if (attacking || !PlayerIsClose(0.8f))
             return;
+
+        SoundManager.instance.Play(attackClip, 0.7f);
 
         StartCoroutine(ExecuteAttack());
     }
 
-    private bool PlayerIsClose()
+    private bool PlayerIsClose(float scale = 1f)
     {
-        return (Character.instance.transform.position - transform.position).magnitude < range;
+        return (Character.instance.transform.position - transform.position).magnitude < range * scale;
     }
 
 
@@ -71,6 +79,8 @@ public class Enemy : MonoBehaviour
     {
         hp -= value;
 
+        if (hp > 0)
+            SoundManager.instance.Play(takeDamageClip, 0.7f);
         StartCoroutine(FlashRed());
 
         if (hp <= 0)
@@ -79,6 +89,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        SoundManager.instance.Play(deathClip);
         Destroy(gameObject);
     }
 
@@ -117,6 +128,7 @@ public class Enemy : MonoBehaviour
         if (PlayerIsClose())
         {
             Character.instance.TakeDamage(damage);
+            SoundManager.instance.Play(attackImpactClip);
             canMove = false;
         }
 
@@ -134,5 +146,14 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireSphere(transform.position, range);
+
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, range * 0.8f);
+    }
+
+    public void Footsteps(AudioClip clip)
+    {
+        SoundManager.instance.Play(clip, 0.05f);
     }
 }

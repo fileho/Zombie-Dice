@@ -1974,6 +1974,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 555015684266380179, guid: c21184ca33729a940b2d8d62985d1e0a, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 613035836631238572, guid: c21184ca33729a940b2d8d62985d1e0a, type: 3}
       propertyPath: m_RootOrder
       value: 6

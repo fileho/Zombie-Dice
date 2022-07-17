@@ -141,6 +141,10 @@ MonoBehaviour:
   damage: 25
   range: 1.6
   undirectMovementStrength: 1
+  takeDamageClip: {fileID: 8300000, guid: 5dea6f4f80d6a9c4c91ae8b0f980041a, type: 3}
+  deathClip: {fileID: 8300000, guid: 70b575be38e53a742b35b2f480afe4b1, type: 3}
+  attackClip: {fileID: 8300000, guid: cdd4fade374cd344aac20580619223c9, type: 3}
+  attackImpactClip: {fileID: 8300000, guid: f4384940db4187040838a6504adfb8b9, type: 3}
 --- !u!95 &132095739689120547
 Animator:
   serializedVersion: 3

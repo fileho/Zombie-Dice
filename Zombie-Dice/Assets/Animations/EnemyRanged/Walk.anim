@@ -71,4 +71,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.33333334
+    functionName: Footsteps
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: c7e2c79d5fa5552478301c8c3362a269, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.65
+    functionName: Footsteps
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: dd55e9554ea9bd14fbdc8e6968f70a8a, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

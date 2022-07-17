@@ -7,6 +7,9 @@ public class Cube : MonoBehaviour
     [SerializeField] private List<Attachment> attachments;
     [SerializeField] private List<Consumables> consumables;
 
+    [Space]
+    [SerializeField] private AudioClip bulletImpactClip;
+
     private Transform cube;    
     private Quaternion rotation = Quaternion.Euler(0, 0, 0);
     private int rindex = 2;
@@ -52,7 +55,6 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         var rot = Quaternion.RotateTowards(cube.rotation, rotation, 180 * Time.deltaTime);
         cube.rotation = rot;
     }
@@ -69,6 +71,8 @@ public class Cube : MonoBehaviour
         var bullet = collision.gameObject.GetComponent<Bullet>();
         if (bullet == null)
             return;
+
+        SoundManager.instance.Play(bulletImpactClip);
 
         PickRotation();
     }

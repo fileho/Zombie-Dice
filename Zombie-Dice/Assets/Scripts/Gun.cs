@@ -44,14 +44,14 @@ public class Gun : MonoBehaviour
         if (CanShoot())
             Shoot();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            AddAttachment(atts[0]);
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            AddAttachment(atts[1]);
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            AddAttachment(atts[2]);        
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            AddAttachment(atts[3]);
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        //     AddAttachment(atts[0]);
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        //     AddAttachment(atts[1]);
+        // if (Input.GetKeyDown(KeyCode.Alpha3))
+        //     AddAttachment(atts[2]);        
+        // if (Input.GetKeyDown(KeyCode.Alpha4))
+        //     AddAttachment(atts[3]);
 
         UpdateAttachmentDurations();
     }

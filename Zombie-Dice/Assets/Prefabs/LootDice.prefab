@@ -635,3 +635,4 @@ MonoBehaviour:
   consumables:
   - {fileID: 11400000, guid: 460676ac3274f854abae818d6599eabb, type: 2}
   - {fileID: 11400000, guid: eb58a23e305bf5b4fa0fca2b4262cd4e, type: 2}
+  bulletImpactClip: {fileID: 8300000, guid: ff98ff81651a02f4c968b4e5c0ad3ac3, type: 3}

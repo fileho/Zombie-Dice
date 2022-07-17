@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Soundtrack : MonoBehaviour
 {
-    [SerializeField] private AudioClip clip;
+    [SerializeField] private List<AudioClip> clips;
 
     private AudioSource audioSource;
+    private int songIndex;
 
     public static Soundtrack instance;
 
@@ -26,14 +28,33 @@ public class Soundtrack : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = clip;
-        audioSource.loop = true;
-        audioSource.volume = SoundManager.instance.volumes.Soundtrack;
+        audioSource.loop = false;
+        SetVolume(SoundManager.instance.volumes.Soundtrack);
+        PlaySong();
+    }
+
+    private void Update()
+    {
+        if (!audioSource.isPlaying)
+            PlaySong();
+    }
+
+    private void PlaySong()
+    {
+        audioSource.clip = clips[songIndex];
         audioSource.Play();
+
+        IncrementSongIndex();
+    }
+
+    private void IncrementSongIndex()
+    {
+        ++songIndex;
+        songIndex %= clips.Count;
     }
 
     public void SetVolume(float value)
     {
-        audioSource.volume = value;
+        audioSource.volume = value*0.7f;
     }
 }

@@ -15,5 +15,5 @@ MonoBehaviour:
   crateIcon: {fileID: 21300000, guid: 90c178dc2abe3f046b5dde2b0366107d, type: 3}
   icon: {fileID: 21300000, guid: 41b61032edc0da5449329ac218ffdf1f, type: 3}
   pickUpSound: {fileID: 8300000, guid: 036de6b5925356a4ebb74e3d0d781328, type: 3}
-  duration: 12.44539
+  duration: 15
   extraBullets: 2
