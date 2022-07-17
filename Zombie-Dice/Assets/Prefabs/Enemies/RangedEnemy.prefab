@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cc734045a58835944b96933a934be647, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6085ce606ede06146ab01e9340582082, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,9 +100,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.45}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!50 &16060780484554340
 Rigidbody2D:
   serializedVersion: 4
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.35
+  m_Mass: 0.5
   m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -137,10 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 30
-  movementSpeed: 5
+  movementSpeed: 4
   damage: 10
   range: 12
-  undirectMovementStrength: 3
+  undirectMovementStrength: 1
   projectileSpeed: 3
   projectile: {fileID: 2186590555037584077, guid: 6e61ce1e6d48c2943a6caf6ec6e444de, type: 3}
 --- !u!95 &16060780484554336
@@ -153,7 +153,7 @@ Animator:
   m_GameObject: {fileID: 16060780484554330}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f5988adcb468e2b4e9f4776462cb3b8b, type: 2}
+  m_Controller: {fileID: 9100000, guid: e280397f50a71544eb347027a8f99598, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

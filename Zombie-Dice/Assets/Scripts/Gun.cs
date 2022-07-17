@@ -33,6 +33,7 @@ public class Gun : MonoBehaviour
 
         // Create a new instance
         gunStats = Instantiate(gunStats);
+        gunStats.DrawAmmo();
     }
 
     // Update is called once per frame
@@ -51,6 +52,8 @@ public class Gun : MonoBehaviour
             AddAttachment(atts[2]);        
         if (Input.GetKeyDown(KeyCode.Alpha4))
             AddAttachment(atts[3]);
+
+        UpdateAttachmentDurations();
     }
 
     private bool CanShoot()
@@ -71,7 +74,7 @@ public class Gun : MonoBehaviour
             // shotgun
             float j = (i + 1) / 2;
             float dir = i % 2 == 0 ? 1 : -1;
-            float angle = j * dir * 8 * Mathf.Deg2Rad;
+            float angle = j * dir * 10 * Mathf.Deg2Rad;
 
             Vector2 direction = RotateVector(transform.up, angle);
 
@@ -120,5 +123,29 @@ public class Gun : MonoBehaviour
         {
             UIManager.instance.SetIcon(attachments[i].icon, i);
         }
+
+        for (int i = attachments.Count; i < 3; i++)
+        {
+            UIManager.instance.SetEmpty(i);
+        }
+    }
+
+    private void UpdateAttachmentDurations()
+    {
+        if (attachments.Count == 0)
+            return;
+
+        for (int i = 0; i < attachments.Count; i++)
+        {
+            attachments[i].UpdateDuration();
+            UIManager.instance.AnimateSlot(i, attachments[i].duration);
+        }
+
+        if (attachments[0].IsExpired())
+        {
+            RemoveAttachment();
+            UpdateAttachmentIcons();
+        }
+
     }
 }

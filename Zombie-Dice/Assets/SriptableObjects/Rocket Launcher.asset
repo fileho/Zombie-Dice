@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Rocket Launcher
   m_EditorClassIdentifier: 
   crateIcon: {fileID: 21300000, guid: 4cacd9ae6644e744e8a99facfc892c79, type: 3}
-  icon: {fileID: 21300000, guid: e69970f6c2f65c14a80574b85080e583, type: 3}
+  icon: {fileID: 21300000, guid: e00d11f35d4a86e418d4c935bf3fa221, type: 3}
   pickUpSound: {fileID: 8300000, guid: 036de6b5925356a4ebb74e3d0d781328, type: 3}
+  duration: 15
   explosionRange: 1
   massModifier: 0.1

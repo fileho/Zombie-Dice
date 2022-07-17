@@ -77,7 +77,7 @@ public class Cube : MonoBehaviour
     {
         if (rindex < attachments.Count)
         {
-            Gun.instance.AddAttachment(attachments[rindex]);
+            Gun.instance.AddAttachment(Instantiate(attachments[rindex]));
             SoundManager.instance.Play(attachments[rindex].pickUpSound);
             return;
         }

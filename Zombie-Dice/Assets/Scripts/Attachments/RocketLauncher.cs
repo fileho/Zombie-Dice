@@ -24,5 +24,7 @@ public class RocketLauncher : Attachment
 
         gun.explosionRange += explosionRange * value;
         gun.massModifier += massModifier * value;
+
+        UIManager.instance.EquipRocket(value);
     }
 }

@@ -26,5 +26,7 @@ public class Scope : Attachment
         gun.damage += damage * value;
         gun.bulletSpeed += speed * value;
         gun.massModifier += massModifier * value;
+
+        UIManager.instance.EquipScope(value);
     }
 }

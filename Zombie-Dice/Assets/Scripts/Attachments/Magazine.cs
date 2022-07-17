@@ -20,6 +20,8 @@ public class Magazine : Attachment
 
         if (gun.currentAmmo > gun.maxAmmo)
             gun.currentAmmo = gun.maxAmmo;
+
+        gun.DrawAmmo();
     }
 
     private void Modify(GunStats gun, bool equip)
@@ -29,6 +31,6 @@ public class Magazine : Attachment
         gun.maxAmmo += extraBullets * value;
         gun.rateOfFire += rateOfFire * value;
 
-        gun.DrawAmmo();
+        UIManager.instance.EquipMagazine(value);
     }
 }

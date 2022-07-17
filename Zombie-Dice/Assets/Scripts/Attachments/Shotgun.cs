@@ -23,5 +23,7 @@ public class Shotgun : Attachment
         int value = equip ? 1 : -1;
 
         gun.bulletCount += extraBullets * value;
+
+        UIManager.instance.EquipShotgun(value);
     }
 }

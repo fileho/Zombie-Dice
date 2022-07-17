@@ -59,7 +59,7 @@ public class GunStats : ScriptableObject
 
     public void DrawAmmo()
     {
-        UIManager.instance.UpdateAmmo(currentAmmo, maxAmmo);
+        UIManager.instance.UpdateAmmo(currentAmmo);
     }
 
     private AudioClip SelectSoundEffect()
