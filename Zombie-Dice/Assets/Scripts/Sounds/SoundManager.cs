@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private int poolSize = 10;
+    public SoundVolumes volumes;
 
     public static SoundManager instance;
 
@@ -34,7 +35,7 @@ public class SoundManager : MonoBehaviour
     {
         var source = audioSources[index];
         source.clip = clip;
-        source.volume = volume;
+        source.volume = volume * volumes.Sfx;
         source.Play();
 
         IncrementIndex();
