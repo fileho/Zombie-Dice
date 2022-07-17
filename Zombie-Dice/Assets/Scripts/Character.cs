@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
     private Rigidbody2D rb;
     private Camera mainCamera;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     public static Character instance;
 
@@ -35,6 +36,7 @@ public class Character : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;        
     }
 
@@ -90,6 +92,7 @@ public class Character : MonoBehaviour
         if (value == 0)
             return;
 
+        StartCoroutine(FlashRed());
         SoundManager.instance.Play(takeDamageClip);
 
         hp -= value;
@@ -132,5 +135,25 @@ public class Character : MonoBehaviour
 
     public void PlayFootsteps(AudioClip clip) {
         SoundManager.instance.Play(clip, 0.8f); 
+    }
+
+    private IEnumerator FlashRed()
+    {
+        const float duration = 0.1f;
+        float time = 0;
+
+        while (time < duration)
+        {
+            spriteRenderer.color = Color.Lerp(Color.white, Color.red, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        time = 0;
+        while (time < duration)
+        {
+            spriteRenderer.color = Color.Lerp(Color.red, Color.white, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 }

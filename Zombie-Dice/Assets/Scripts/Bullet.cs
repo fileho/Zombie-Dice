@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     private float damage = 0;
     private float explosionRange = 0;
 
-    public void Setup(float damage, float explosionRange, float mass)
+    public void Setup(float damage, float explosionRange = 0f, float mass = 1f)
     {
         this.damage = damage;
         this.explosionRange = explosionRange;
@@ -40,6 +40,20 @@ public class Bullet : MonoBehaviour
     }
 
     private void DealDamage(Collision2D collision)
+    {
+        HitEnemy(collision);
+        HitPlayer(collision);
+    }
+
+    private void HitPlayer(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        Character.instance.TakeDamage(damage);
+    }
+
+    private void HitEnemy(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Enemy"))
             return;
